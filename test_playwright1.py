@@ -1,0 +1,25 @@
+import re
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False, slow_mo=1000)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://practicetestautomation.com/practice-test-login/")
+    page.get_by_role("textbox", name="Username").click()
+    page.get_by_role("textbox", name="Username").fill("student")
+    page.get_by_role("textbox", name="Password").click()
+    page.get_by_role("textbox", name="Password").fill("P")
+    page.get_by_role("textbox", name="Password").press("CapsLock")
+    page.get_by_role("textbox", name="Password").fill("Password123")
+    page.get_by_role("button", name="Submit").click()
+    page.get_by_role("link", name="Log out").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
