@@ -30,3 +30,5 @@ End-to-end UI test automation scripts built with **Playwright** and **Python**, 
    ```bash
    python test_playwright1.py
    ```
+
+- Practicing Git branches and Pull Requests
